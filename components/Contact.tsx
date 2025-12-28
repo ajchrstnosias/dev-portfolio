@@ -21,11 +21,21 @@ export default function Contact() {
     setSubmitStatus('idle')
 
     try {
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      // Access environment variables
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || ''
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || ''
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ''
+
+      console.log('EmailJS Config Check:', {
+        serviceId: serviceId ? 'SET' : 'MISSING',
+        templateId: templateId ? 'SET' : 'MISSING',
+        publicKey: publicKey ? 'SET' : 'MISSING',
+        serviceIdValue: serviceId.substring(0, 10) + '...',
+        templateIdValue: templateId.substring(0, 10) + '...',
+      })
 
       if (!serviceId || !templateId || !publicKey) {
+        console.error('Missing environment variables!')
         throw new Error('EmailJS credentials not configured. Please set up environment variables.')
       }
 
