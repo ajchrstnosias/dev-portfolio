@@ -1,0 +1,31 @@
+STEP-BY-STEP FIX FOR VERCEL:
+
+1. Go to: https://vercel.com/dashboard
+2. Click on "osias-dev-portfolio" project
+3. Click "Settings" (top menu)
+4. Click "Environment Variables" (left sidebar)
+5. Add these THREE variables (if not already there):
+   
+   Variable Name: NEXT_PUBLIC_EMAILJS_SERVICE_ID
+   Value: service_ksdm9cg
+   Environment: Select ALL (Production, Preview, Development)
+   Click "Save"
+   
+   Variable Name: NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+   Value: template_l4op777
+   Environment: Select ALL (Production, Preview, Development)
+   Click "Save"
+   
+   Variable Name: NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+   Value: dSiQi5QjybaajA7dN
+   Environment: Select ALL (Production, Preview, Development)
+   Click "Save"
+
+6. Go to "Deployments" tab (top menu)
+7. Click "..." (three dots) on the LATEST deployment
+8. Click "Redeploy"
+9. UNCHECK "Use existing Build Cache"
+10. Click "Redeploy" button
+11. Wait 2-3 minutes for deployment to complete
+12. Test the contact form - it should work now!
+
