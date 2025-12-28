@@ -2,11 +2,30 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import { FaInstagram, FaGithub, FaFacebook, FaChevronDown } from 'react-icons/fa'
 import { useTheme } from '@/contexts/ThemeContext'
 
 export default function Hero() {
   const { theme } = useTheme()
+  const [showScrollButton, setShowScrollButton] = useState(true)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Hide button if scrolled down more than 100px or near bottom
+      const scrollY = window.scrollY
+      const windowHeight = window.innerHeight
+      const documentHeight = document.documentElement.scrollHeight
+      const isNearBottom = scrollY + windowHeight >= documentHeight - 100
+      
+      setShowScrollButton(scrollY < 100 && !isNearBottom)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // Check initial scroll position
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
   
   return (
     <section id="home" className={`${theme === 'dark' ? 'bg-gradient-to-tr from-dark via-gray-800 to-gray-900' : 'bg-gradient-to-tr from-gray-200 via-gray-50 to-gray-300'} pt-24 md:pt-32 pb-12 md:pb-20 min-h-screen flex items-center relative transition-colors duration-300 overflow-hidden`}>
@@ -80,16 +99,19 @@ export default function Hero() {
         </div>
       </div>
       
-      {/* Floating Scroll Button */}
-      <Link 
-        href="#about"
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce"
-        aria-label="Scroll to next section"
-      >
-        <div className={`${theme === 'dark' ? 'bg-white/10 border-white/20 text-light' : 'bg-dark/5 border-dark/20 text-dark'} backdrop-blur-md border rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110`}>
-          <FaChevronDown size={20} />
-        </div>
-      </Link>
+      {/* Floating Scroll Button - Hidden on mobile and when scrolled */}
+      {showScrollButton && (
+        <Link 
+          href="#about"
+          className="hidden md:block absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 transition-opacity duration-300"
+          aria-label="Scroll to next section"
+          style={{ opacity: showScrollButton ? 1 : 0 }}
+        >
+          <div className={`${theme === 'dark' ? 'bg-white/10 border-white/20 text-light' : 'bg-dark/5 border-dark/20 text-dark'} backdrop-blur-md border rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 animate-bounce`}>
+            <FaChevronDown size={20} />
+          </div>
+        </Link>
+      )}
     </section>
   )
 }

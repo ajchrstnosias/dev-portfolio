@@ -152,7 +152,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`${theme === 'dark' ? 'bg-white/10 border-white/20 hover:bg-white/20 text-white' : 'bg-dark/10 border-dark/20 hover:bg-dark/20 text-dark'} backdrop-blur-md border px-10 md:px-12 py-2 md:py-3 rounded-lg transition-all duration-300 font-bold text-base md:text-lg w-auto flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:hover:bg-white/10`}
+              className={`${theme === 'dark' ? 'bg-white/40 border-white/20 hover:bg-white/20 text-white' : 'bg-dark/10 border-dark/20 hover:bg-dark/20 text-dark'} backdrop-blur-md border px-10 md:px-12 py-2 md:py-3 rounded-lg transition-all duration-300 font-bold text-base md:text-lg w-auto flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:hover:bg-white/10`}
             >
               {isSubmitting ? (
                 <>
@@ -169,13 +169,13 @@ export default function Contact() {
             
             {submitStatus === 'success' && (
               <p className="text-green-400 text-sm md:text-base font-medium mt-2">
-                ✓ Message sent successfully! I'll get back to you soon.
+                Message sent successfully! I'll get back to you soon.
               </p>
             )}
             
             {submitStatus === 'error' && (
               <p className="text-red-400 text-sm md:text-base font-medium mt-2">
-                ✗ Failed to send message. Please try again or email me directly at imprentabyaj@gmail.com
+                Failed to send message. Please try again or email me directly at imprentabyaj@gmail.com
               </p>
             )}
           </div>
