@@ -17,9 +17,23 @@ Make sure in Vercel project settings:
 
 ### 3. Check Environment Variables
 If using EmailJS, ensure these are set in Vercel:
-- `NEXT_PUBLIC_EMAILJS_SERVICE_ID`
-- `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`
-- `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`
+
+**Where to add them:**
+1. Go to Vercel Dashboard → Your Project
+2. Click "Settings" tab
+3. Click "Environment Variables" in the sidebar
+4. Add these three variables:
+   - `NEXT_PUBLIC_EMAILJS_SERVICE_ID` = `service_ksdm9cg`
+   - `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` = `template_l4op777`
+   - `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` = `dSiQi5QjybaajA7dN`
+5. Select environments (Production, Preview, Development) - select all
+6. Click "Save"
+7. **Important**: After adding env vars, redeploy your project for them to take effect
+
+**Your EmailJS Credentials:**
+- Service ID: `service_ksdm9cg`
+- Template ID: `template_l4op777`
+- Public Key: `dSiQi5QjybaajA7dN`
 
 Note: Missing env vars won't cause a 404, but they're needed for the contact form to work.
 
