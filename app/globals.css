@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-white text-dark font-sans;
+    font-family: var(--font-poppins), sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  html[data-theme='dark'] body {
+    @apply bg-dark text-light;
+  }
+  
+  html[data-theme='light'] body {
+    @apply bg-white text-dark;
+  }
+}
+
+@layer components {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
