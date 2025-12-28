@@ -50,6 +50,9 @@ export default function Contact() {
       }, 5000)
     } catch (error) {
       console.error('EmailJS error:', error)
+      console.error('Service ID:', process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ? 'Set' : 'Missing')
+      console.error('Template ID:', process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ? 'Set' : 'Missing')
+      console.error('Public Key:', process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ? 'Set' : 'Missing')
       setSubmitStatus('error')
       
       // Reset error message after 5 seconds
