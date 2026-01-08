@@ -1,9 +1,50 @@
 'use client'
 
 import Image from 'next/image'
+import { useState } from 'react'
 import { useTheme } from '@/contexts/ThemeContext'
 
 const projects = [
+  {
+    id: 6,
+    systemTitle: 'Fix-it-now',
+    systemDescription: 'Video Recommendations about your note',
+    systemUrl: '',
+    year: '2024',
+    image: '/assets/projects/fix-it-now.png',
+  },
+  {
+    id: 7,
+    systemTitle: 'GamePlan',
+    systemDescription: 'Game Planning System',
+    systemUrl: null,
+    year: '2023',
+    image: '/assets/projects/gameplan.png',
+  },
+  {
+    id: 8,
+    systemTitle: 'PerFit',
+    systemDescription: 'A modern multi-sport coaching and performance analysis platform',
+    systemUrl: null,
+    year: '2023',
+    image: '/assets/projects/studyroom.png',
+  },
+  {
+    id: 9,
+    systemTitle: 'Voluntary Hand',
+    systemDescription: 'Donation System',
+    systemUrl: null,
+    year: '2023',
+    image: '/assets/projects/voluntaryhand.png',
+  },
+  {
+    id: 10,
+    systemTitle: 'Study Room',
+    systemDescription: '',
+    systemUrl: null,
+    year: '2023',
+    image: '/assets/projects/studyroom.png',
+  },
   {
     id: 6,
     systemTitle: 'EchoCoach',
@@ -64,6 +105,11 @@ const projects = [
 
 export default function Portfolio() {
   const { theme } = useTheme()
+  const [showAll, setShowAll] = useState(false)
+  
+  // Show minimum 3 items, or all if showAll is true
+  const displayedProjects = showAll ? projects : projects.slice(0, 6)
+  const hasMoreProjects = projects.length > 6
   
   return (
     <section id="portfolio" className={`${theme === 'dark' ? 'bg-gradient-to-tr from-dark via-gray-800 to-gray-900' : 'bg-gradient-to-tr from-gray-200 via-gray-50 to-gray-300'} py-12 md:py-24 transition-colors duration-300`}>
@@ -74,7 +120,7 @@ export default function Portfolio() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8">
-          {projects.map((project) => (
+          {displayedProjects.map((project) => (
             <div
               key={project.id}
               className="block"
@@ -134,6 +180,20 @@ export default function Portfolio() {
             </div>
           ))}
         </div>
+        
+        {/* Show All / Show Less Button */}
+        {hasMoreProjects && (
+          <div className="flex items-center justify-center gap-4 mt-10 md:mt-12">
+            <div className={`flex-1 h-px ${theme === 'dark' ? 'bg-white/20' : 'bg-dark/20'}`}></div>
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className={`${theme === 'dark' ? 'bg-white/10 hover:bg-white/20 text-light border-white/20' : 'bg-dark/10 hover:bg-dark/20 text-dark border-dark/20'} backdrop-blur-md border rounded-full px-6 py-1.5 text-sm font-semibold transition-all duration-300 hover:scale-105`}
+            >
+              {showAll ? 'Show Less' : 'Show All'}
+            </button>
+            <div className={`flex-1 h-px ${theme === 'dark' ? 'bg-white/20' : 'bg-dark/20'}`}></div>
+          </div>
+        )}
       </div>
     </section>
   )
